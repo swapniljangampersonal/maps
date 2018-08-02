@@ -44,6 +44,9 @@ public class MapdetailsResourceIntTest {
     private static final String DEFAULT_LABEL = "AAAAAAAAAA";
     private static final String UPDATED_LABEL = "BBBBBBBBBB";
 
+    private static final String DEFAULT_CATEGORY = "AAAAAAAAAA";
+    private static final String UPDATED_CATEGORY = "BBBBBBBBBB";
+
     private static final String DEFAULT_INCOMPLIANCES = "AAAAAAAAAA";
     private static final String UPDATED_INCOMPLIANCES = "BBBBBBBBBB";
 
@@ -84,6 +87,7 @@ public class MapdetailsResourceIntTest {
             .longitude(DEFAULT_LONGITUDE)
             .latitude(DEFAULT_LATITUDE)
             .label(DEFAULT_LABEL)
+            .category(DEFAULT_CATEGORY)
             .incompliances(DEFAULT_INCOMPLIANCES);
         return mapdetails;
     }
@@ -111,6 +115,7 @@ public class MapdetailsResourceIntTest {
         assertThat(testMapdetails.getLongitude()).isEqualTo(DEFAULT_LONGITUDE);
         assertThat(testMapdetails.getLatitude()).isEqualTo(DEFAULT_LATITUDE);
         assertThat(testMapdetails.getLabel()).isEqualTo(DEFAULT_LABEL);
+        assertThat(testMapdetails.getCategory()).isEqualTo(DEFAULT_CATEGORY);
         assertThat(testMapdetails.getIncompliances()).isEqualTo(DEFAULT_INCOMPLIANCES);
     }
 
@@ -145,6 +150,7 @@ public class MapdetailsResourceIntTest {
             .andExpect(jsonPath("$.[*].longitude").value(hasItem(DEFAULT_LONGITUDE.toString())))
             .andExpect(jsonPath("$.[*].latitude").value(hasItem(DEFAULT_LATITUDE.toString())))
             .andExpect(jsonPath("$.[*].label").value(hasItem(DEFAULT_LABEL.toString())))
+            .andExpect(jsonPath("$.[*].category").value(hasItem(DEFAULT_CATEGORY.toString())))
             .andExpect(jsonPath("$.[*].incompliances").value(hasItem(DEFAULT_INCOMPLIANCES.toString())));
     }
 
@@ -161,6 +167,7 @@ public class MapdetailsResourceIntTest {
             .andExpect(jsonPath("$.longitude").value(DEFAULT_LONGITUDE.toString()))
             .andExpect(jsonPath("$.latitude").value(DEFAULT_LATITUDE.toString()))
             .andExpect(jsonPath("$.label").value(DEFAULT_LABEL.toString()))
+            .andExpect(jsonPath("$.category").value(DEFAULT_CATEGORY.toString()))
             .andExpect(jsonPath("$.incompliances").value(DEFAULT_INCOMPLIANCES.toString()));
     }
 
@@ -183,6 +190,7 @@ public class MapdetailsResourceIntTest {
             .longitude(UPDATED_LONGITUDE)
             .latitude(UPDATED_LATITUDE)
             .label(UPDATED_LABEL)
+            .category(UPDATED_CATEGORY)
             .incompliances(UPDATED_INCOMPLIANCES);
 
         restMapdetailsMockMvc.perform(put("/api/mapdetails")
@@ -197,6 +205,7 @@ public class MapdetailsResourceIntTest {
         assertThat(testMapdetails.getLongitude()).isEqualTo(UPDATED_LONGITUDE);
         assertThat(testMapdetails.getLatitude()).isEqualTo(UPDATED_LATITUDE);
         assertThat(testMapdetails.getLabel()).isEqualTo(UPDATED_LABEL);
+        assertThat(testMapdetails.getCategory()).isEqualTo(UPDATED_CATEGORY);
         assertThat(testMapdetails.getIncompliances()).isEqualTo(UPDATED_INCOMPLIANCES);
     }
 

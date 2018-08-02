@@ -6,6 +6,7 @@ export class Mapdetails implements BaseEntity {
         public longitude?: string,
         public latitude?: string,
         public label?: string,
+        public category?: string,
         public incompliances?: string,
     ) {
     }

@@ -61,16 +61,21 @@
             [lngLat]="[convertFloat(mapdetails.longitude), convertFloat(mapdetails.latitude)]"
         >
             <div
+                *ngIf="mapdetails.category == 'City' || mapdetails.category == 'city'"
                 (click)="openVerticallyCentered(content, mapdetails)"
                 class="marker"
-                class="marker-style"
+                class="marker-city"
+                >
+            </div>
+            <div
+                *ngIf="mapdetails.category == 'Data Center' || mapdetails.category == 'data center'"
+                (click)="openVerticallyCentered(content, mapdetails)"
+                class="marker"
+                class="marker-data-center"
                 >
             </div>
         </mgl-marker>
     </mgl-map>
-    <!-- <agm-map [latitude]="18.587481" [longitude]="73.738066" [styles]="mapStyle" [scrollwheel]="false" [fitBounds]="latlngBounds">
-        <agm-marker *ngFor="let mapdetails of mapdetails" [latitude]="convertFloat(mapdetails.latitude)" [longitude]="convertFloat(mapdetails.longitude)" (markerClick)="openVerticallyCentered(content, mapdetails)"></agm-marker>
-    </agm-map> -->
     <div>
         <label class="switch">
             <input type="checkbox" [ngModel]="showMapDetails" [checked]="showMapDetails" (change) = "checkClicked(showMapDetails)">
@@ -87,6 +92,7 @@
             <th><span>Latitude</span></th>
             <th><span>Label</span></th>
             <th><span>Incompliances</span></th>
+            <th><span>Category</span></th>
             <th></th>
             </tr>
             </thead>
@@ -97,6 +103,7 @@
                 <td>{{mapdetails.latitude}}</td>
                 <td>{{mapdetails.label}}</td>
                 <td>{{mapdetails.incompliances}}</td>
+                <td>{{mapdetails.category}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

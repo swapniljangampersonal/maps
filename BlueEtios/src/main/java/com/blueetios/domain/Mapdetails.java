@@ -25,6 +25,9 @@ public class Mapdetails implements Serializable {
     @Field("label")
     private String label;
 
+    @Field("category")
+    private String category;
+
     @Field("incompliances")
     private String incompliances;
 
@@ -75,6 +78,19 @@ public class Mapdetails implements Serializable {
         this.label = label;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public Mapdetails category(String category) {
+        this.category = category;
+        return this;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public String getIncompliances() {
         return incompliances;
     }
@@ -115,6 +131,7 @@ public class Mapdetails implements Serializable {
             ", longitude='" + getLongitude() + "'" +
             ", latitude='" + getLatitude() + "'" +
             ", label='" + getLabel() + "'" +
+            ", category='" + getCategory() + "'" +
             ", incompliances='" + getIncompliances() + "'" +
             "}";
     }

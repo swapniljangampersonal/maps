@@ -302,7 +302,6 @@ export class MapdetailsComponent implements OnInit, OnDestroy {
                 if (localStorage.getItem('recentlyViewed')) {
                     this.recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed'));
                 }
-               console.log(localStorage.getItem('recentlyViewed'));
                 this.maplocations = this.mapdetails.map((a) => a.label);
             },
             (res: ResponseWrapper) => this.onError(res.json)
@@ -406,23 +405,40 @@ export class MapdetailsComponent implements OnInit, OnDestroy {
     zoomToSelectedCity(val) {
         let latitude = 0;
         let longitude = 0;
+        const coordinates = [];
+        const selectedCities = [];
+        let latArray = [];
         for (let i = 0; i < this.mapdetails.length; i++) {
             if (this.mapdetails[i].label === val) {
                 latitude = this.convertFloat(this.mapdetails[i].latitude);
                 longitude = this.convertFloat(this.mapdetails[i].longitude);
                 this.addToRecentlyViewed(this.mapdetails[i]);
+                selectedCities.push(this.mapdetails[i]);
+                // coordinates.push([longitude, latitude]);
             }
         }
         if (latitude === 0 && longitude === 0) {
             alert('Location not found');
         } else {
-            const coordinates = [[longitude, latitude]];
+            latArray = selectedCities.map((a) => this.convertFloat(a.latitude));
+            for ( let i = 0; i < selectedCities.length; i++) {
+                if (this.isMinLatitude(this.convertFloat(selectedCities[i].latitude), latArray)) {
+                    latitude = this.convertFloat(selectedCities[i].latitude) - 0.2;
+                } else if (this.isMaxLatitude(this.convertFloat(selectedCities[i].latitude), latArray)) {
+                    latitude = this.convertFloat(selectedCities[i].latitude) + 0.2;
+                } else {
+                    latitude = this.convertFloat(selectedCities[i].latitude);
+                }
+                coordinates.push([this.convertFloat(selectedCities[i].longitude), latitude]);
+            }
             this.bounds = coordinates.reduce((bounds, coord) => {
                 return bounds.extend(<any>coord);
             }, new LngLatBounds(coordinates[0], coordinates[0]));
         }
     }
+    zoomToSelectedCities(cityName) {
 
+    }
     public scrollRight(): void {
         this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft + 150), behavior: 'smooth' });
       }

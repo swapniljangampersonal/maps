@@ -16,7 +16,11 @@
             "fieldValidateRules": []
         },
         {
-            "fieldName": "incomplicances",
+            "fieldName": "category",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "incompliances",
             "fieldType": "String"
         }
     ],

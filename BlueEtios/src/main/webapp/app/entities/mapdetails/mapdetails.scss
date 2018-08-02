@@ -299,8 +299,12 @@ input:checked + .slider {
 mgl-map {
     height: 500px;
 }
-.marker-style {
-    background-image: url('../../../content/images/marker-ico.png'); width: 50px; height: 50px;
+.marker-city {
+    background-image: url('../../../content/images/city.png'); width: 48px; height: 48px;
+    background-repeat: no-repeat;
+}
+.marker-data-center {
+    background-image: url('../../../content/images/data-center.png'); width: 48px; height: 48px;
     background-repeat: no-repeat;
 }
 
@@ -324,7 +328,7 @@ mgl-map {
 
   .middle {
     float: left;
-    width: 80%;
+    width: 95%;
     overflow: auto;
     /*will change this to hidden later to deny scolling to user*/
     white-space: nowrap;
